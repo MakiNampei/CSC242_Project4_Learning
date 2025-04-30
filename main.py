@@ -26,6 +26,9 @@ def train_logistic_regression(X, y, learning_rate=0.001, epochs=100):
         z = np.dot(X, theta) + bias
         y_hat = sigmoid(z)
 
+        loss = cross_entropy_loss(y, y_hat)
+        print(f"Epoch {epoch + 1}: loss = {loss:.4f}, weights = {theta}, bias = {bias}")
+
         error = y_hat - y
         gradient_theta = np.dot(error, X) / N
         gradient_bias = np.sum(error) / N
@@ -52,6 +55,10 @@ def evaluate_model(X, y, theta, bias):
         print(f"Sample {i + 1}: Predicted = {pred}, Actual = {int(actual)}")
 
     print(f"\nAccuracy on dev set: {accuracy * 100:.2f}%")
+
+def cross_entropy_loss(y, y_hat):
+    epsilon = 1e-10
+    return -np.mean(y * np.log(y_hat + epsilon) + (1 - y) * np.log(1 - y_hat + epsilon))
 
 # 主函数
 if __name__ == "__main__":
