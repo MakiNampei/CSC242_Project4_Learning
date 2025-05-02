@@ -12,6 +12,7 @@ def sigmoid_derivative(z):
     s = sigmoid(z)
     return s * (1 - s)
 
+
 def load_data(filename):
     data = []
     labels = []
@@ -31,6 +32,7 @@ def load_data(filename):
         print(f"Error: File not found at {filename}", file=sys.stderr)
         sys.exit(1)
 
+
 def calculate_mlp_accuracy(X, y, W1, b1, W2, b2):
     N = X.shape[0]
     if N == 0: return 0.0
@@ -41,6 +43,7 @@ def calculate_mlp_accuracy(X, y, W1, b1, W2, b2):
     predictions = (A2 >= 0.5).astype(int)
     accuracy = np.mean(predictions == y.astype(int))
     return accuracy
+
 
 def train_mlp_minibatch(X_train, y_train, X_dev, y_dev, hidden_size=10,
                         learning_rate=0.01, epochs=100, batch_size=32):
@@ -93,7 +96,7 @@ if __name__ == "__main__":
     DEFAULT_DEV_FILE = 'dev.txt'
     LEARNING_RATES_TO_TEST = [1.0, 0.1, 0.01, 0.001, 3.0]
     DEFAULT_EPOCHS = 50
-    DEFAULT_BATCH_SIZE = 32
+    DEFAULT_BATCH_SIZE = 100
     DEFAULT_HIDDEN_SIZE = 10
     NUM_RUNS = 5
 
